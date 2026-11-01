@@ -147,7 +147,7 @@ enum LaunchAtLogin {
                     try SMAppServiceRegistrar.unregister()
                 }
             } catch {
-                NSLog("Pelorus: login item update failed: \(error.localizedDescription)")
+                NSLog("Lodestar: login item update failed: \(error.localizedDescription)")
             }
         }
     }

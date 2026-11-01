@@ -107,7 +107,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func updateStatusItemTooltip() {
-        statusItem.button?.toolTip = "Pelorus — \(environment.preferences.hotkey.displayName) opens the dial"
+        statusItem.button?.toolTip = "Lodestar — \(environment.preferences.hotkey.displayName) opens the dial"
     }
 
     /// Rebuilt on open, so the labels carry the live shortcut and the paste item is honest
@@ -186,7 +186,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
 
         let quitItem = NSMenuItem(
-            title: "Quit Pelorus",
+            title: "Quit Lodestar",
             action: #selector(quit),
             keyEquivalent: "q"
         )
@@ -305,7 +305,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         )
         let hosting = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hosting)
-        window.title = "Pelorus"
+        window.title = "Lodestar"
         window.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         window.setContentSize(NSSize(width: 1040, height: 720))
         window.minSize = NSSize(width: 900, height: 640)
@@ -357,7 +357,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let hosting = NSHostingController(rootView: OnboardingView(model: model))
         let window = NSWindow(contentViewController: hosting)
-        window.title = "Welcome to Pelorus"
+        window.title = "Welcome to Lodestar"
         window.styleMask = [.titled, .closable, .fullSizeContentView]
         window.acceptsMouseMovedEvents = true
         window.titlebarAppearsTransparent = true
@@ -440,7 +440,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func appMenuItem() -> NSMenuItem {
         let root = NSMenuItem()
         let menu = NSMenu()
-        menu.addItem(item("About Pelorus", #selector(showAbout)))
+        menu.addItem(item("About Lodestar", #selector(showAbout)))
         menu.addItem(.separator())
         menu.addItem(item("Settings…", #selector(showSettingsWindow), ","))
         menu.addItem(.separator())
@@ -450,7 +450,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(services)
         NSApp.servicesMenu = servicesMenu
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Hide Pelorus", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
+        menu.addItem(withTitle: "Hide Lodestar", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
         let hideOthers = menu.addItem(
             withTitle: "Hide Others",
             action: #selector(NSApplication.hideOtherApplications(_:)),
@@ -459,7 +459,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hideOthers.keyEquivalentModifierMask = [.command, .option]
         menu.addItem(withTitle: "Show All", action: #selector(NSApplication.unhideAllApplications(_:)), keyEquivalent: "")
         menu.addItem(.separator())
-        menu.addItem(item("Quit Pelorus", #selector(quit), "q"))
+        menu.addItem(item("Quit Lodestar", #selector(quit), "q"))
         root.submenu = menu
         return root
     }
@@ -519,7 +519,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func helpMenuItem() -> NSMenuItem {
         let root = NSMenuItem()
         let menu = NSMenu(title: "Help")
-        menu.addItem(item("Pelorus Help", #selector(showHelp), "?"))
+        menu.addItem(item("Lodestar Help", #selector(showHelp), "?"))
         menu.addItem(item("Reopen the Tour", #selector(showOnboarding)))
         root.submenu = menu
         NSApp.helpMenu = menu
@@ -528,7 +528,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func showAbout() {
         let alert = NSAlert()
-        alert.messageText = "Pelorus"
+        alert.messageText = "Lodestar"
         alert.informativeText = """
         A radial menu for the bookmarks you actually use.
 

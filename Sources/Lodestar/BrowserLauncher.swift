@@ -73,7 +73,7 @@ enum BrowserLauncher {
         configuration.activates = !background
         NSWorkspace.shared.open([url], withApplicationAt: applicationURL, configuration: configuration) { _, error in
             if let error {
-                NSLog("Pelorus: failed to open \(url.absoluteString): \(error.localizedDescription)")
+                NSLog("Lodestar: failed to open \(url.absoluteString): \(error.localizedDescription)")
                 DispatchQueue.main.async { NSWorkspace.shared.open(url) }
             }
         }
@@ -102,7 +102,7 @@ enum BrowserLauncher {
         guard let script = NSAppleScript(source: source) else { return ScriptResult(output: nil, succeeded: false) }
         let result = script.executeAndReturnError(&error)
         if let error {
-            NSLog("Pelorus: AppleScript failed: \(error)")
+            NSLog("Lodestar: AppleScript failed: \(error)")
             return ScriptResult(output: nil, succeeded: false)
         }
         return ScriptResult(output: result.stringValue, succeeded: true)

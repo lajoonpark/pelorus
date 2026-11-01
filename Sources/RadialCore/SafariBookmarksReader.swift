@@ -19,7 +19,7 @@ public enum SafariBookmarksReader {
             case .fileNotFound(let url):
                 return "No Safari bookmarks found at \(url.path). If Safari has never saved a bookmark, open it once and try again."
             case .permissionDenied:
-                return "macOS blocked access to your Safari bookmarks. Grant Full Disk Access to Pelorus in System Settings › Privacy & Security › Full Disk Access, then try again."
+                return "macOS blocked access to your Safari bookmarks. Grant Full Disk Access to Lodestar in System Settings › Privacy & Security › Full Disk Access, then try again."
             case .malformed(let detail):
                 return "The Safari bookmarks file could not be read: \(detail)"
             }

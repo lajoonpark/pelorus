@@ -63,7 +63,7 @@ public final class BookmarkStore {
             let data = try encoder.encode(bookmarks)
             try data.write(to: fileURL, options: .atomic)
         } catch {
-            NSLog("Pelorus: failed to save bookmarks: \(error.localizedDescription)")
+            NSLog("Lodestar: failed to save bookmarks: \(error.localizedDescription)")
         }
     }
 

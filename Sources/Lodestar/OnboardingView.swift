@@ -264,7 +264,7 @@ enum OnboardingStep: Int, CaseIterable {
 
     var windowTitle: String {
         switch self {
-        case .welcome: return "Welcome to Pelorus"
+        case .welcome: return "Welcome to Lodestar"
         case .look: return "Choose a look"
         case .safari: return "Safari import"
         case .ready: return "You are all set"

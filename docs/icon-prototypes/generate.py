@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generates the Pelorus icon prototypes (SVG) from CompassTheme's palette.
+"""Generates the Lodestar icon prototypes (SVG) from CompassTheme's palette.
 
 Run from anywhere:  python3 generate.py
 Colours are CompassTheme's (0-1 RGB -> hex). Angles are degrees clockwise from 12 o'clock,
@@ -115,7 +115,7 @@ def variant_a():
 <circle cx="{C}" cy="{C}" r="316" fill="url(#gloss)"/>
 <g filter="url(#soft)">{needle(40,176,170,36)}{hub(50)}</g>
 '''
-    return svg(body, "Pelorus A - faithful compass")
+    return svg(body, "Lodestar A - faithful compass")
 
 # ---------- B: bold (survives 32px) ----------
 def variant_b():
@@ -130,9 +130,9 @@ def variant_b():
 <circle cx="{C}" cy="{C}" r="332" fill="url(#gloss)"/>
 <g filter="url(#soft)">{needle(40,300,200,58)}{hub(68)}</g>
 '''
-    return svg(body, "Pelorus B - bold")
+    return svg(body, "Lodestar B - bold")
 
-# ---------- C: pelorus (sight vanes) ----------
+# ---------- C: lodestar (sight vanes) ----------
 def vane(dist, deg, slit):
     """A sight vane: a small brass post across the bar at `dist` from the centre, with a slit (far) or hairline (near)."""
     x, y = pol(dist, deg)
@@ -171,7 +171,7 @@ def variant_c():
   {hub(46)}
 </g>
 '''
-    return svg(body, "Pelorus C - sight vanes")
+    return svg(body, "Lodestar C - sight vanes")
 
 # ---------- D: brass squircle ----------
 def variant_d():
@@ -188,7 +188,7 @@ def variant_d():
 <circle cx="{C}" cy="{C}" r="332" fill="url(#gloss)"/>
 <g filter="url(#soft)">{needle(40,290,190,48,tail_color=('#8A7149','#5E4A2D'))}{hub(58)}</g>
 '''
-    return svg(body, "Pelorus D - brass tile")
+    return svg(body, "Lodestar D - brass tile")
 
 # ---------- E: menu-bar template glyphs (black + alpha only) ----------
 def menubar(kind):
@@ -203,7 +203,7 @@ def menubar(kind):
         tk = "".join(f"M{pt(p(21.5,20+40*k))} L{pt(p(15.5,20+40*k))} " for k in range(9))
         extra = f'<path d="{tk}" stroke="#000" stroke-width="2" stroke-linecap="round" fill="none"/>'
         needle_ = f'<path d="M{pt(p(15,40))} L{pt(p(4.5,130))} L{pt(p(10,220))} L{pt(p(4.5,310))} Z" fill="#000"/>'
-        title = "Pelorus menu bar A - ring, nine marks, needle"
+        title = "Lodestar menu bar A - ring, nine marks, needle"
     else:
         # nine arcs, one per slice, with gaps on the slice boundaries
         arcs = ""
@@ -212,16 +212,16 @@ def menubar(kind):
             arcs += f"M{pt(p(27,a0))} A27 27 0 0 1 {pt(p(27,a1))} "
         ring = f'<path d="{arcs}" fill="none" stroke="#000" stroke-width="5" stroke-linecap="butt"/>'
         extra = ""
-        title = "Pelorus menu bar B - nine arcs and needle"
+        title = "Lodestar menu bar B - nine arcs and needle"
         needle_ = f'<path d="M{pt(p(19,40))} L{pt(p(6.5,130))} L{pt(p(12,220))} L{pt(p(6.5,310))} Z" fill="#000"/>'
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><title>{title}</title>'
             f'{ring}{extra}{needle_}</svg>\n')
 
 files = {
-    "pelorus-a-faithful.svg": variant_a(),
-    "pelorus-b-bold.svg": variant_b(),
-    "pelorus-c-sight-vanes.svg": variant_c(),
-    "pelorus-d-brass-tile.svg": variant_d(),
+    "lodestar-a-faithful.svg": variant_a(),
+    "lodestar-b-bold.svg": variant_b(),
+    "lodestar-c-sight-vanes.svg": variant_c(),
+    "lodestar-d-brass-tile.svg": variant_d(),
     "menubar-a.svg": menubar("a"),
     "menubar-b.svg": menubar("b"),
 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Builds Pelorus.app.
+# Builds Lodestar.app.
 #
-#   ./scripts/build.sh              # build into ./build/Pelorus.app
+#   ./scripts/build.sh              # build into ./build/Lodestar.app
 #   ./scripts/build.sh --install    # build and copy into /Applications
 #   ./scripts/build.sh --run        # build and launch
 #   ./scripts/build.sh --verify     # build with SIL verification (see below)
@@ -21,9 +21,9 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-APP_NAME="Pelorus"
-DISPLAY_NAME="Pelorus"
-BUNDLE_ID="com.local.pelorus"
+APP_NAME="Lodestar"
+DISPLAY_NAME="Lodestar"
+BUNDLE_ID="com.local.lodestar"
 VERSION="1.0.0"
 BUILD_NUMBER="1"
 MIN_MACOS="14.0"
@@ -125,7 +125,7 @@ cat > "$APP_DIR/Contents/Info.plist" <<PLIST
     <key>NSHumanReadableCopyright</key>
     <string>MIT licensed</string>
     <key>NSAppleEventsUsageDescription</key>
-    <string>Pelorus can open links in your current Safari tab or a new window, and can open Safari's bookmark editor.</string>
+    <string>Lodestar can open links in your current Safari tab or a new window, and can open Safari's bookmark editor.</string>
 </dict>
 </plist>
 PLIST
@@ -142,9 +142,9 @@ if [[ $INSTALL -eq 1 ]]; then
     cp -R "$APP_DIR" /Applications/
     echo "==> Installed to /Applications/$APP_NAME.app"
     APP_DIR="/Applications/$APP_NAME.app"
-    if [[ -d "/Applications/SafariRadial.app" ]]; then
-      echo "note: the old /Applications/SafariRadial.app is still installed. Quit it and delete it;" >&2
-      echo "      Pelorus has a new bundle ID, so re-grant Full Disk Access and the login item." >&2
+    if [[ -d "/Applications/SafariRadial.app" || -d "/Applications/Pelorus.app" ]]; then
+      echo "note: the old SafariRadial/Pelorus app in /Applications is still installed. Quit it and delete it;" >&2
+      echo "      Lodestar has a new bundle ID, so re-grant Full Disk Access and the login item." >&2
     fi
   else
     echo "warning: /Applications is not writable; leaving the app in ./$BUILD_DIR" >&2

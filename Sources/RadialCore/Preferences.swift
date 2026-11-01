@@ -125,7 +125,7 @@ public struct Preferences: Codable, Equatable {
             let data = try JSONEncoder().encode(self)
             try data.write(to: url, options: .atomic)
         } catch {
-            NSLog("Pelorus: failed to save preferences: \(error.localizedDescription)")
+            NSLog("Lodestar: failed to save preferences: \(error.localizedDescription)")
         }
     }
 }

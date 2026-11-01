@@ -22,16 +22,16 @@ final class AppSupportTests: XCTestCase {
 
     func testFreshInstallUsesNewFolderAndCreatesNothing() {
         let url = AppSupport.url(for: "bookmarks.json", base: base)
-        XCTAssertEqual(url.deletingLastPathComponent().lastPathComponent, "Pelorus")
+        XCTAssertEqual(url.deletingLastPathComponent().lastPathComponent, "Lodestar")
         XCTAssertFalse(fm.fileExists(atPath: url.path))
-        XCTAssertFalse(fm.fileExists(atPath: base.appendingPathComponent("Pelorus").path),
+        XCTAssertFalse(fm.fileExists(atPath: base.appendingPathComponent("Lodestar").path),
                        "asking for a path must not create folders by itself")
     }
 
     func testLegacyFileIsCopiedAndTheOriginalIsLeftAlone() throws {
         try write("old slots", to: "SafariRadial")
         let url = AppSupport.url(for: "bookmarks.json", base: base)
-        XCTAssertEqual(url.deletingLastPathComponent().lastPathComponent, "Pelorus")
+        XCTAssertEqual(url.deletingLastPathComponent().lastPathComponent, "Lodestar")
         XCTAssertEqual(try String(contentsOf: url, encoding: .utf8), "old slots")
         let legacy = base.appendingPathComponent("SafariRadial/bookmarks.json")
         XCTAssertEqual(try String(contentsOf: legacy, encoding: .utf8), "old slots")
@@ -39,7 +39,7 @@ final class AppSupportTests: XCTestCase {
 
     func testExistingNewFileIsNeverOverwritten() throws {
         try write("old slots", to: "SafariRadial")
-        try write("new slots", to: "Pelorus")
+        try write("new slots", to: "Lodestar")
         let url = AppSupport.url(for: "bookmarks.json", base: base)
         XCTAssertEqual(try String(contentsOf: url, encoding: .utf8), "new slots")
     }
@@ -47,7 +47,7 @@ final class AppSupportTests: XCTestCase {
     func testEachFileIsCarriedOverOnItsOwn() throws {
         // Preferences saved first (creating the new folder) must not strand the old bookmarks.
         try write("old slots", to: "SafariRadial")
-        try write("{}", to: "Pelorus", file: "preferences.json")
+        try write("{}", to: "Lodestar", file: "preferences.json")
         let url = AppSupport.url(for: "bookmarks.json", base: base)
         XCTAssertEqual(try String(contentsOf: url, encoding: .utf8), "old slots")
     }

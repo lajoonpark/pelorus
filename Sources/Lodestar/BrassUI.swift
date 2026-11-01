@@ -652,7 +652,7 @@ private struct CheckShape: Shape {
 
 extension Notification.Name {
     /// Posted by the app whenever the global shortcut fires, so on-screen keycaps can press too.
-    static let dialHotkeyPressed = Notification.Name("Pelorus.dialHotkeyPressed")
+    static let dialHotkeyPressed = Notification.Name("Lodestar.dialHotkeyPressed")
 }
 
 /// The shortcut drawn as physical keys, which sink when you press the real thing.

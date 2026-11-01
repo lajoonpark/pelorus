@@ -10,12 +10,12 @@ var targets: [Target] = [
 ]
 
 #if os(macOS)
-products.append(.executable(name: "Pelorus", targets: ["Pelorus"]))
-targets.append(.executableTarget(name: "Pelorus", dependencies: ["RadialCore"]))
+products.append(.executable(name: "Lodestar", targets: ["Lodestar"]))
+targets.append(.executableTarget(name: "Lodestar", dependencies: ["RadialCore"]))
 #endif
 
 let package = Package(
-    name: "Pelorus",
+    name: "Lodestar",
     platforms: [.macOS(.v14)],
     products: products,
     targets: targets

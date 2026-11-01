@@ -8,8 +8,9 @@ import Foundation
 /// old folder is left exactly as it was, so a failed or unwanted migration costs nothing and an
 /// older build still finds its data.
 public enum AppSupport {
-    public static let folderName = "Pelorus"
-    public static let legacyFolderName = "SafariRadial"
+    public static let folderName = "Lodestar"
+    /// Earlier names, newest first.
+    public static let legacyFolderNames = ["Pelorus", "SafariRadial"]
 
     /// The location of `fileName` inside the app's folder.
     ///
@@ -23,9 +24,11 @@ public enum AppSupport {
             ?? fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support")
         let current = root.appendingPathComponent(folderName).appendingPathComponent(fileName)
-        let legacy = root.appendingPathComponent(legacyFolderName).appendingPathComponent(fileName)
+        let legacy = legacyFolderNames
+            .map { root.appendingPathComponent($0).appendingPathComponent(fileName) }
+            .first { fileManager.fileExists(atPath: $0.path) } ?? current
 
-        if !fileManager.fileExists(atPath: current.path), fileManager.fileExists(atPath: legacy.path) {
+        if !fileManager.fileExists(atPath: current.path), legacy != current {
             do {
                 try fileManager.createDirectory(
                     at: current.deletingLastPathComponent(),
@@ -33,7 +36,7 @@ public enum AppSupport {
                 )
                 try fileManager.copyItem(at: legacy, to: current)
             } catch {
-                NSLog("Pelorus: could not carry \(fileName) over from \(legacyFolderName): \(error.localizedDescription)")
+                NSLog("Lodestar: could not carry \(fileName) over from \(legacy.deletingLastPathComponent().lastPathComponent): \(error.localizedDescription)")
                 // Better to keep reading the old copy than to start from an empty dial.
                 return legacy
             }

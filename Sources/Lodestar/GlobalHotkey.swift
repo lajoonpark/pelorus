@@ -46,7 +46,7 @@ final class GlobalHotkey {
         )
         guard status == noErr, let ref else {
             lastRegistrationFailed = true
-            NSLog("Pelorus: could not register \(spec.displayName) (OSStatus \(status))")
+            NSLog("Lodestar: could not register \(spec.displayName) (OSStatus \(status))")
             return false
         }
         hotKeyRef = ref
